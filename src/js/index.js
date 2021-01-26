@@ -3,6 +3,7 @@ import { home } from './home';
 import { pageDetail } from './page_detail';
 import { pageList } from './page_list';
 import { routes } from './routes';
+import { tomorrowDate, nextYearDate } from './date';
 
 let pageArgument;
 

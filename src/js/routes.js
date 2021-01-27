@@ -1,9 +1,9 @@
-import { home } from './home';
+import { homePage } from './home_page';
 import { pageDetail } from './page_detail';
 import { pageList } from './page_list';
 
 const routes = {
-  "": home,
+  "": homePage,
   "pagelist": pageList,
   "pagedetail": pageDetail,
 };

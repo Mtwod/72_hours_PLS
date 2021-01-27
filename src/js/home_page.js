@@ -1,4 +1,4 @@
-const home = (argument = "") => {
+const homePage = (argument = "") => {
   const preparePage = () => {
     const cleanedArgument = argument.replace(/\s+/g, "-");
     let articles = "";
@@ -40,4 +40,4 @@ const home = (argument = "") => {
 
 };
 
-export { home };
+export { homePage };

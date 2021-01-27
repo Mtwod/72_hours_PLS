@@ -1,0 +1,17 @@
+.cardGame {
+  width: 100%;
+  margin: 0px auto;
+  background-color: $color-background;
+  color: $color-white;
+}
+
+.platformsIcons {
+  max-width: 100%;
+}
+
+.platformIcon {
+  height: 1em;
+  width: auto;
+  object-fit: cover;
+  margin: 0 3px;
+}

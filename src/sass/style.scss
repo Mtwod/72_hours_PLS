@@ -1,9 +1,108 @@
-$color-red: rgb(255, 20, 20);
+@import './variables';
+@import './game_cards';
 
-p {
+@mixin desktop {
+  @media (min-width: $desktop-width) {
+    @content;
+  }
+}
+
+// @font-face {
+//   font-family: 'Avenir';
+//   src: url(../fonts/avenir-next-lt-pro-bold.otf) format('otf');
+// }
+
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: $color-background;
+  color: $color-white;
+}
+
+.main-title {
   color: $color-red;
 }
 
-h1 {
-  color: blue;
+.container {
+  display: grid;
+  grid-template-columns: auto;
+  width: 95vw;
+  margin: 50px auto;
+
+  @include desktop {
+    width: 50vw;
+  }
+}
+
+// a, a:visited {
+// 	text-decoration: none;
+// 	position: relative;
+// 	color: #069;
+	
+// 	&:after {
+// 		content: '';
+// 		height: 3px;
+// 		position: absolute;
+// 		bottom: 0;
+// 		left: 0;
+// 		width: 0%;
+// 		background: #069;
+// 		transition: 0.2s;
+// 	}
+
+// 	&:hover:after {
+// 		width: 100%;
+// 	}
+// }
+
+.pageListPicture {
+  width: 100%;
+  object-fit: cover;
+  @include desktop {
+    height: 10vw;
+  }
+}
+
+
+.page-list {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 25px;
+  @include desktop {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+.button {
+  background-color: $color-red; /* Green */
+  border: none;
+  color: $color-white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.bar{
+  background-color: $color-background;
+  margin:0 auto;
+  width:575px;
+  border-radius:30px;
+  border:1px solid $color-white;
+}
+
+.searchbar{
+  background-color: $color-background;
+  height:45px;
+  border:none;
+  width:500px;
+  font-size:16px;
+  outline: none;
+}
+
+.searchbar-icon {
+  height:20px;
+  position:relative;
+  top:5px;
+  left:10px;
 }

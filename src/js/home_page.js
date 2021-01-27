@@ -1,5 +1,6 @@
 import { urlOptions } from './api_url';
 import { tomorrowDate, nextYearDate } from './date';
+import { platformsImages } from './platforms';
 
 const { baseUrl, pageNumber, dates, orderedAdded } = urlOptions;
 
@@ -21,7 +22,7 @@ const homePage = () => {
             <div class="cardGame">
               <img class="pageListPicture" src="${game.background_image}" alt="Game image">
               <h1>${game.name}</h1>
-              <h2>${game.released}</h2>
+              <div class="platformsIcons">${platformsImages(game)}</div>
               <a href = "#pagedetail/${game.id}">${game.id}</a>
             </div>
         `;
@@ -29,13 +30,14 @@ const homePage = () => {
     } catch (error) {
       console.error(error);
     }
-    document.querySelector(".page-list .games").innerHTML = games;
+    document.querySelector(".page-list").innerHTML = games;
+    document.querySelector(".page-list").insertAdjacentHTML("beforeend", `<a href="#" class="button"><strong>Show more</strong></a>`);
   };
 
   const render = () => {
     pageContent.innerHTML = `
       <section class="page-list">
-        <div class="games">...loading</div>
+        <p>...loading</p>
       </section>
     `;
     preparePage();

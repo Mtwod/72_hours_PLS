@@ -1,43 +1,46 @@
-const homePage = (argument = "") => {
-  const preparePage = () => {
-    const cleanedArgument = argument.replace(/\s+/g, "-");
-    let articles = "";
+import { urlOptions } from './api_url';
+import { tomorrowDate, nextYearDate } from './date';
 
-    const fetchList = (url, argument) => {
-      let finalURL = url;
-      if (argument) {
-        finalURL = url + "?search=" + argument;
-      }
+const { baseUrl, pageNumber, dates, orderedAdded } = urlOptions;
 
-      fetch(`${finalURL}`)
-        .then((response) => response.json())
-        .then((response) => {
-          response.results.forEach((article) => {
-            articles += `
-                  <div class="cardGame">
-                    <h1>${article.name}</h1>
-                    <h2>${article.released}</h2>
-                    <a href = "#pagedetail/${article.id}">${article.id}</a>
-                  </div>
-                `;
-          });
-          document.querySelector(".page-list .articles").innerHTML = articles;
-        });
-    };
+const pageContent = document.getElementById('pageContent');
 
-    fetchList("https://api.rawg.io/api/games", cleanedArgument);
+const displayGameList = async () => {
+  
+};
+
+const homePage = () => {
+  const preparePage = async () => {
+    let games = "";
+    const finalUrl = `${baseUrl}${pageNumber(1)}${dates(tomorrowDate, nextYearDate)}${orderedAdded}`;
+    try {
+      const response = await fetch(finalUrl);
+      const data = await response.json();
+      data.results.forEach((game) => {
+        games += `
+            <div class="cardGame">
+              <img class="pageListPicture" src="${game.background_image}" alt="Game image">
+              <h1>${game.name}</h1>
+              <h2>${game.released}</h2>
+              <a href = "#pagedetail/${game.id}">${game.id}</a>
+            </div>
+        `;
+      });
+    } catch (error) {
+      console.error(error);
+    }
+    document.querySelector(".page-list .games").innerHTML = games;
   };
 
   const render = () => {
     pageContent.innerHTML = `
       <section class="page-list">
-        <div class="articles">...loading</div>
+        <div class="games">...loading</div>
       </section>
     `;
-
     preparePage();
   };
-
+  render();
 };
 
 export { homePage };

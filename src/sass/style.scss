@@ -47,7 +47,7 @@ body {
 a, a:visited {
 	text-decoration: none;
 	position: relative;
-	color: $color-red;
+	color: $color-white;
 	
 	&:after {
 		content: '';
@@ -56,7 +56,7 @@ a, a:visited {
 		bottom: 0;
 		left: 0;
 		width: 0%;
-		background: $color-red;
+		background: $color-white;
 		transition: 0.3s;
 	}
 
@@ -212,7 +212,7 @@ a, a:visited {
 }
 
 #platforms {
-  grid-area: plarforms;
+  grid-area: platforms;
 }
 
 #publishers {
@@ -231,15 +231,38 @@ a, a:visited {
 #rating {
   grid-area: rating;
   color: $color-red;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .detailPageRedTitle {
   color: $color-red;
+  font-size: 1.5em;
 }
 
 .detailsColumn {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.name-rating-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  @include desktop{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.grid-container-detail {
+  display: grid;
+  grid-template-areas:
+    'description description description description'
+    'released developers platforms publishers'
+    'genres empty tags tags';
+  grid-gap: 10px;
+  padding: 10px;
 }

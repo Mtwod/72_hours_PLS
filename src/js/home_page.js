@@ -3,29 +3,13 @@ import { tomorrowDate, nextYearDate } from './date';
 import { platformsImages } from './platforms';
 import { handleGamePictureHover } from './card_hover';
 
-const { baseUrl, pageNumber, dates, orderedAdded } = urlOptions;
+const { baseUrl, pageNumberUrl, dates, orderedAdded } = urlOptions;
 const pageContent = document.getElementById('pageContent');
 
-const allDevelopers = async (game) => {
-  const url = `${gamesUrl}/${game.id}${apiUrl}`;
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    const developers = data.developers.reduce((developersList, developer) => {
-      developersList.push(developer.name);
-      return developersList;
-    }, []).join(', ');
-  } catch (error) {
-    console.error(error);
-  }
-  return developers;
-};
-
-
 const homePage = () => {
-  const preparePage = async () => {
+  const preparePage = async (pageNumber = 1, replaceHTML = true) => {
     let games = "";
-    const finalUrl = `${baseUrl}${pageNumber(1)}${dates(tomorrowDate, nextYearDate)}${orderedAdded}`;
+    const finalUrl = `${baseUrl}${pageNumberUrl(pageNumber)}${dates(tomorrowDate, nextYearDate)}${orderedAdded}`;
     try {
       const response = await fetch(finalUrl);
       const data = await response.json();
@@ -42,7 +26,11 @@ const homePage = () => {
         `;
       });
 
-      document.querySelector(".page-list").innerHTML = games;
+      if (replaceHTML) {
+        document.querySelector(".page-list").innerHTML = games;
+      } else {
+        document.querySelector(".page-list").innerHTML += games;
+      }
 
       // Add events to all game card
       for (const game of data.results) {
@@ -69,7 +57,15 @@ const homePage = () => {
       console.error(error);
     }
 
-    document.querySelector(".page-list").insertAdjacentHTML("beforeend", `<a href="#" class="button"><strong>Show more</strong></a>`);
+    if (pageNumber < 3) {
+      document.querySelector(".page-list").insertAdjacentHTML("afterend", `<button id="showMoreButton" class="button"><strong>Show more</strong></button>`);
+      const showMoreButton = document.getElementById('showMoreButton');
+      showMoreButton.addEventListener('click', () => {
+        showMoreButton.remove();
+        pageNumber++;
+        preparePage(pageNumber, false);
+      });
+    }
   };
 
   const render = () => {

@@ -11,7 +11,7 @@ const handleGamePictureHover = (selector, game, developers) => {
         <div class="text-top-left">
           <p>${released}</p>
           <p>${developers}</p>
-          <p>${rating}/${rating_top}, ${ratings_count} votes</p>
+          <p>${rating}/5, ${ratings_count} votes</p>
           <small>Genres: ${genresList}</small>
         </div>
   `;

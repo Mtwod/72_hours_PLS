@@ -1,4 +1,4 @@
-const pageNumber = (pageNumber) => {
+const pageNumberUrl = (pageNumber) => {
   return `&page=${pageNumber}`;
 }
 
@@ -12,7 +12,7 @@ const pageSize = "&page_size=9";
 
 const urlOptions = {
   baseUrl: `${gamesUrl}${apiUrl}${pageSize}`,
-  pageNumber: pageNumber,
+  pageNumberUrl: pageNumberUrl,
   orderedReleased: `&ordering=released`,
   orderedAdded: `&ordering=-added`,
   dates: dates

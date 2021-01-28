@@ -1,3 +1,5 @@
+import { platformsUrl } from "./api_url";
+
 const platformsImages = (game) => {
   const { platforms } = game;
   let platformsList = [];
@@ -41,4 +43,24 @@ const platformsImages = (game) => {
   return platformsImages;
 };
 
-export { platformsImages };
+const allPlatforms = async () => {
+  try {
+    const response = await fetch(platformsUrl);
+    const data = await response.json();
+
+    const platforms = data.results.map((platform) => {
+      const { id, name, slug } = platform;
+      const platformObject = {
+        id: id,
+        name: name,
+        slug: slug
+      }
+      return platformObject;
+    });
+    return platforms;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export { platformsImages, allPlatforms };

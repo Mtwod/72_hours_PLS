@@ -4,13 +4,13 @@ import { platformsImages } from './platforms';
 import { handleGamePictureHover } from './card_hover';
 import { selectPlatformHtml } from "./platform_dropdown";
 
-const { baseUrl, pageNumberUrl, dates, orderedAdded } = gamesUrlOptions;
+const { baseUrl, pageNumberUrl, orderedReleased, platformUrl } = gamesUrlOptions;
 const pageContent = document.getElementById('pageContent');
 
-const homePage = () => {
+const platformPage = (platformSearched = "") => {
   const preparePage = async (pageNumber = 1, replaceHTML = true) => {
     let games = "";
-    const finalUrl = `${baseUrl}${pageNumberUrl(pageNumber)}${dates(tomorrowDate, nextYearDate)}${orderedAdded}`;
+    const finalUrl = `${baseUrl}${pageNumberUrl(pageNumber)}${platformUrl(platformSearched.id)}${orderedReleased}`;
     try {
       const response = await fetch(finalUrl);
       const data = await response.json();
@@ -71,8 +71,8 @@ const homePage = () => {
 
   const render = () => {
     pageContent.innerHTML = `
-      <h1>Welcome,</h1>
-      <span id="welcomeMessage">The Hyper Progame is the world’s premier event for computer and video games and related products. At The Hyper Progame,the video game industry’s top talent pack the Los Angeles Convention Center, connecting tens of thousands of the best, brightest, and most innovative in the interactive entertainment industry. For three exciting days, leading-edge companies, groundbreaking new technologies, and never-before-seen products will be showcased. The Hyper Progame connects you with both new and existing partners, industry executives, gamers, and social influencers providing unprecedented exposure</span>
+      <h1>Results for </h1>
+      <span id="welcomeMessage"></span>
 
       <section class="page-list">
         <p>...loading</p>
@@ -84,4 +84,4 @@ const homePage = () => {
   render();
 };
 
-export { homePage };
+export { platformPage };

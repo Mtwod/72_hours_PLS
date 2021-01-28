@@ -7,8 +7,10 @@
   }
 }
 
+// GENERAL STYLING 
+
 body {
-  font-family: Helvetica, sans-serif;
+  font-family: sans-serif;
   background-color: $color-background;
   color: $color-white;
 }
@@ -28,9 +30,49 @@ body {
   }
 }
 
+a, a:visited {
+	text-decoration: none;
+	position: relative;
+	color: #069;
+	
+	&:after {
+		content: '';
+		height: 3px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0%;
+		background: #069;
+		transition: 0.2s;
+	}
+
+	&:hover:after {
+		width: 100%;
+	}
+	
+	&.block {
+		display: block;
+		padding: 0.5em;
+		
+		&:hover {
+			background: #eee;
+		}
+	}
+}
+
 // PAGE LIST SHOW
 
-.pageListPicture, .cardListImage {
+.cardGame {
+  width: 100%;
+  margin: 0px auto;
+  background-color: $color-background;
+  color: $color-white;
+  @include desktop {
+    width: 16vw;
+  }
+}
+
+.pageListPictureZone, .pageListPicture {  
   width: 100%;
   height: 270px;
   object-fit: cover;
@@ -159,10 +201,3 @@ body {
   font-size:16px;
   outline: none;
 }
-
-// .searchbar-icon {
-//   height:20px;
-//   position:relative;
-//   top:5px;
-//   left:10px;
-// }

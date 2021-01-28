@@ -18,4 +18,4 @@ const urlOptions = {
   dates: dates
 };
 
-export { urlOptions };
+export { urlOptions, gamesUrl, apiUrl, pageSize };

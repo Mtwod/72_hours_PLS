@@ -1,14 +1,19 @@
-const handleGamePictureHover = (selector, game) => {
-  const { background_image, rating, rating_top, ratings_count, released } = game;
-  const genres = "in pending...";
-  // const genresList = genres.reduce((list, genre) => list.push(genre.name), []).join(', ');
+const handleGamePictureHover = (selector, game, developers) => {
+  const { background_image, rating, rating_top, ratings_count, genres, released } = game;
+  // const genres = "in pending...";
   selector.innerHTML = '';
-  // selector.style = `background-image: url('${background_image}')`;
+  let genresList = [];
+  genres.forEach(genre => {
+    genresList.push(genre.name);
+  });
+  genresList = genresList.join(', ');
   selector.innerHTML += `
+        <div class="text-top-left">
           <p>${released}</p>
-          <p>Studio</p>
+          <p>${developers}</p>
           <p>${rating}/${rating_top}, ${ratings_count} votes</p>
-          <small>Genres: ${genres}</small>
+          <small>Genres: ${genresList}</small>
+        </div>
   `;
 };
 

@@ -1,5 +1,6 @@
 import '../sass/style.scss';
 import { homePage } from './home_page';
+import { searchPage } from './search_page';
 import { pageDetail } from './page_detail';
 import { pageList } from './page_list';
 import { routes } from './routes';
@@ -18,6 +19,11 @@ const setRoute = () => {
 
 window.addEventListener("hashchange", () => setRoute());
 window.addEventListener("DOMContentLoaded", () => setRoute());
+
+const searchBarElement = document.getElementById('searchBar');
+searchBarElement.addEventListener('change', () => {
+  searchPage(searchBarElement.value);
+});
 
 // "basicURL/#pagelist/borderlands" => ["pagelist", "borderlands"]
 // "basicURL/#pagedetail/3543" => ["pagedetail", "3543"]

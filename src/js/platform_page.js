@@ -1,28 +1,29 @@
 import { gamesUrlOptions, gamesUrl, apiUrl } from './api_url';
-import { tomorrowDate, nextYearDate } from './date';
+import { todayDate, oldYearDate } from './date';
 import { platformsImages } from './platforms';
 import { handleGamePictureHover } from './card_hover';
 import { selectPlatformHtml } from "./platform_dropdown";
 
-const { baseUrl, pageNumberUrl, orderedReleased, platformUrl } = gamesUrlOptions;
+const { baseUrl, pageNumberUrl, orderedReleased, platformUrl, dates } = gamesUrlOptions;
 const pageContent = document.getElementById('pageContent');
 
 const platformPage = (platformSearched = "") => {
   const preparePage = async (pageNumber = 1, replaceHTML = true) => {
     let games = "";
-    const finalUrl = `${baseUrl}${pageNumberUrl(pageNumber)}${platformUrl(platformSearched.id)}${orderedReleased}`;
+    const finalUrl = `${baseUrl}${pageNumberUrl(pageNumber)}${dates(oldYearDate, todayDate)}${platformUrl(platformSearched.id)}${orderedReleased}`;
+    console.log(finalUrl);
     try {
       const response = await fetch(finalUrl);
       const data = await response.json();
       data.results.forEach((game) => {
+        const { slug, background_image, name, id } = game;
         games += `
             <div class="cardGame">
-              <div id="picture-zone-${game.slug}" class="pageListPictureZone">
-                <img class="pageListPicture" src="${game.background_image}" alt="Game image">
+              <div id="picture-zone-${slug}" class="pageListPictureZone">
+                <img class="pageListPicture" src="${background_image ? background_image : "../images/no-image.png"}" alt="Game image">
               </div>
-              <h1>${game.name}</h1>
+              <h1><a href="#">${name}</a></h1>
               <div class="platformsIcons">${platformsImages(game)}</div>
-              <a href = "#pagedetail/${game.id}">${game.id}</a>
             </div>
         `;
       });
@@ -71,7 +72,7 @@ const platformPage = (platformSearched = "") => {
 
   const render = () => {
     pageContent.innerHTML = `
-      <h1>Results for </h1>
+      <h1>Results for ${platformSearched.name}</h1>
       <span id="welcomeMessage"></span>
 
       <section class="page-list">

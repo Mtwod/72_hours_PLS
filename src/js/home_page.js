@@ -15,14 +15,14 @@ const homePage = () => {
       const response = await fetch(finalUrl);
       const data = await response.json();
       data.results.forEach((game) => {
+        const { slug, background_image, name, id } = game;
         games += `
             <div class="cardGame">
-              <div id="picture-zone-${game.slug}" class="pageListPictureZone">
-                <img class="pageListPicture" src="${game.background_image}" alt="Game image">
+              <div id="picture-zone-${slug}" class="pageListPictureZone">
+                <img class="pageListPicture" src="${background_image ? background_image : "../images/no-image.png"}" alt="Game image">
               </div>
-              <h1>${game.name}</h1>
+              <h1><a href="#">${name}</a></h1>
               <div class="platformsIcons">${platformsImages(game)}</div>
-              <a href = "#pagedetail/${game.id}">${game.id}</a>
             </div>
         `;
       });

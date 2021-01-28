@@ -1,4 +1,5 @@
 import { allPlatforms } from "./platforms";
+import { platformPage } from "./platform_page";
 
 const selectPlatformHtml = async () => {
   try {
@@ -23,7 +24,10 @@ const selectPlatformHtml = async () => {
     welcomeMessageElement.insertAdjacentHTML('afterend', finalHtml);  
     
     const select = document.getElementById('platform-select');
-    select.addEventListener('change', () => { console.log(`And the value is... ${select.value}!!`)});
+    select.addEventListener('change', () => { 
+      const platform = platforms.filter((currentPlatform) => currentPlatform.id == select.value)[0];
+      platformPage(platform);
+    });
   } catch (error) {
     console.error(error);
   }

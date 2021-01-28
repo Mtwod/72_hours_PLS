@@ -6,7 +6,7 @@ const dates = (startDate, endDate) => {
   return `&dates=${startDate},${endDate}`;
 }
 const platformUrl = (platformId) => {
-  return `&platform=${platformId}`;
+  return `&platforms=${platformId}`;
 }
 
 const baseUrl = "https://api.rawg.io/api/";
@@ -18,9 +18,10 @@ const pageSize = "&page_size=9";
 const gamesUrlOptions = {
   baseUrl: `${gamesUrl}${apiUrl}${pageSize}`,
   pageNumberUrl: pageNumberUrl,
-  orderedReleased: `&ordering=released`,
+  orderedReleased: `&ordering=-released`,
   orderedAdded: `&ordering=-added`,
-  dates: dates
+  dates: dates,
+  platformUrl: platformUrl
 };
 
 export { gamesUrlOptions, gamesUrl, apiUrl, pageSize, baseUrl, platformsUrl, platformUrl };

@@ -21,7 +21,7 @@ const homePage = () => {
               <div id="picture-zone-${slug}" class="pageListPictureZone">
                 <img class="pageListPicture" src="${background_image ? background_image : "../images/no-image.png"}" alt="Game image">
               </div>
-              <h1><a href="#">${name}</a></h1>
+              <h1><a href="#pageDetail/${slug}">${name}</a></h1>
               <div class="platformsIcons">${platformsImages(game)}</div>
             </div>
         `;

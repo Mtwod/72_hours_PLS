@@ -90,10 +90,10 @@ a, a:visited {
   width: 100%;
   height: 270px;
   object-fit: cover;
-    @include desktop {
+  @include desktop {
     height: 10vw;
   }
-  transition: 0.5
+  transition: 0.5s;
 }
 
 .page-list {
@@ -104,6 +104,9 @@ a, a:visited {
     grid-template-columns: auto auto auto;
   }
 }
+
+
+
 
 // "SHOW MORE" BUTTON
 
@@ -170,4 +173,73 @@ a, a:visited {
   height:35px;
   font-size:16px;
   outline: none;
+}
+
+
+// GAME DETAIL
+
+#gameDetailBackgroundZone {
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+#gameDetailBackgroundZone a {
+  color: $color-white;
+}
+
+#gameDetailBackground {
+  width: 100%;
+  object-fit: cover;
+}
+
+#websiteButton {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}
+
+#description {
+  grid-area: description;
+}
+
+#release-date {
+  grid-area: release-date;
+}
+
+#developers {
+  grid-area: developers;
+}
+
+#platforms {
+  grid-area: plarforms;
+}
+
+#publishers {
+  grid-area: publishers;
+}
+
+#genres {
+  grid-area: genres;
+}
+
+#name {
+  grid-area: name;
+  font-size: 2.5em;
+}
+
+#rating {
+  grid-area: rating;
+  color: $color-red;
+  font-size: 2em;
+}
+
+.detailPageRedTitle {
+  color: $color-red;
+}
+
+.detailsColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }

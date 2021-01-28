@@ -8,13 +8,14 @@ const handleGamePictureHover = (selector, game, developers) => {
   });
   genresList = genresList.join(', ');
   selector.innerHTML += `
-        <div class="text-top-left">
+        <div>
           <p>${released}</p>
           <p>${developers}</p>
           <p>${rating}/5, ${ratings_count} votes</p>
           <small>Genres: ${genresList}</small>
         </div>
   `;
+
 };
 
 export { handleGamePictureHover };

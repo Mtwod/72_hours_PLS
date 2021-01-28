@@ -20,6 +20,11 @@ const setRoute = () => {
 window.addEventListener("hashchange", () => setRoute());
 window.addEventListener("DOMContentLoaded", () => setRoute());
 
+const mainTitleElement = document.getElementById('mainTitle');
+mainTitleElement.addEventListener('click', () => {
+  homePage();
+});
+
 const searchBarElement = document.getElementById('searchBar');
 searchBarElement.addEventListener('change', () => {
   searchPage(searchBarElement.value);
